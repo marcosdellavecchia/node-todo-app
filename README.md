@@ -8,7 +8,7 @@ Open a terminal in the src directory and execute `node index.js`. This will show
 
 ## Command list
 
-- all: Display all registered tasks (both pending and done).
+- ```all```: Display all registered tasks (both pending and done).
 - pending: Display pending tasks.
 - done: Display completed tasks.
 - add [task description] [deadline]: Add a new task.
