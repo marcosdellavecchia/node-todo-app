@@ -16,6 +16,12 @@ const tasksJSON = fs.readFileSync(absolutePath, { encoding: "utf-8" });
 // Convierte el string en formato de objeto JavaScript
 const tasks = JSON.parse(tasksJSON);
 
+// Guardar datos en el archivo tasks.json
+function save() {
+  const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
+  fs.writeFileSync(absolutePath, tasksJSON);
+}
+
 // Ver todas las tareas guardadas
 function showAll() {
   for (let i = 0; i < tasks.length; i++) {
@@ -53,8 +59,7 @@ function showPending() {
 function toggle(taskIndex) {
   tasks[taskIndex].done = !tasks[taskIndex].done;
   showAll();
-  const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
-  fs.writeFileSync(absolutePath, tasksJSON);
+  save();
 }
 
 // Agregar nueva tarea
@@ -66,15 +71,13 @@ function add(name, deadline) {
   };
   tasks.push(newTask);
   showAll();
-  const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
-  fs.writeFileSync(absolutePath, tasksJSON);
+  save();
 }
 
 // Borrar todas la tareas
 function clear() {
   tasks.length = 0;
-  const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
-  fs.writeFileSync(absolutePath, tasksJSON);
+  save();
 }
 
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
