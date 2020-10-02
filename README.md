@@ -4,7 +4,7 @@ TO-DO application that allows to view, add, toggle and delete tasks through the 
 
 ## How to use
 
-Open a terminal located in the src directory and run `node index.js`. The program will display the help menu containing all the available commands. Type `node index.js [command]` in order to execute the desired task.
+Open a terminal located at the src directory and run `node index.js`. The program will display the help menu containing all the available commands. Type `node index.js [command]` in order to execute the desired task.
 
 ## Command list
 
