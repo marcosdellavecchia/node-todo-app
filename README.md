@@ -1,10 +1,10 @@
 # node-todo-app
 
-TO-DO App built using NodeJS that allows to add, view, toggle and clear tasks by manipulating a JSON file.
+TO-DO App that allows to view, add, toggle and clear tasks through the terminal by manipulating a JSON file. Built using NodeJS.
 
 ## How to use
 
-Open a terminal in the src directory and execute `node index.js`. This will show the help menu with all the available commands. Type `node index.js [command]` in order to execute the desired task.
+Open a terminal located in the src directory and run `node index.js`. The program will display the help menu containing all the available commands. Type `node index.js [command]` in order to execute the desired task.
 
 ## Command list
 
@@ -14,3 +14,6 @@ Open a terminal in the src directory and execute `node index.js`. This will show
 - ```add [task description] [deadline]```: Add a new task.
 - ```toggle [task index]```: Switch the current state of a registered task.
 - ```clear```: Removes all tasks from the tasks.json file.
+
+##Credits:
+This software was created as a Node JS project during the Full Stack Node course at Digital House programming school.
