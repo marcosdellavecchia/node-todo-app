@@ -1,27 +1,17 @@
 [
   {
-    "name": "Estudiar para la clase de hoy",
-    "deadline": "28/09/2020",
+    "name": "Tarea 1",
+    "deadline": "10/10/2020",
     "done": true
   },
   {
-    "name": "Poder ingresar las tareas a la app",
-    "deadline": "01/10/2020",
+    "name": "Tarea 2",
+    "deadline": "15/10/2020",
     "done": false
   },
   {
-    "name": "Estudiar Git",
-    "deadline": "05/10/2020",
+    "name": "Tarea 3",
+    "deadline": "15/11/2020",
     "done": false
-  },
-  {
-    "name": "SCRUM",
-    "deadline": "08/10/2020",
-    "done": false
-  },
-  {
-    "name": "Prueba",
-    "deadline": "01/10/2020",
-    "done": true
   }
 ]

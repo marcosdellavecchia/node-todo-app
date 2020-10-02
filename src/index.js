@@ -32,8 +32,11 @@ function showAll() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     console.log(
-      ` - ${task.done ? "✅" : "⛔"} ${task.name} (${task.deadline})  ${i}`
+      `[${i}] ${task.done ? "☑ " : "☐ "} ${task.name} (${task.deadline})`
     );
+  }
+  if (tasks.length === 0) {
+    console.log("No existen tareas registradas.");
   }
 }
 
@@ -41,7 +44,7 @@ function showDone() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (task.done) {
-      console.log(`✅ ${task.name} (${task.deadline})`);
+      console.log(`☑  ${task.name} (${task.deadline})`);
     }
   }
 }
@@ -50,7 +53,7 @@ function showPending() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (!task.done) {
-      console.log(`⛔ ${task.name} (${task.deadline})`);
+      console.log(`☐  ${task.name} (${task.deadline})`);
     }
   }
 }
@@ -69,6 +72,13 @@ function add(name, deadline) {
     done: false,
   };
   tasks.push(newTask);
+  showAll();
+  const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
+  fs.writeFileSync(absolutePath, tasksJSON);
+}
+
+function clear() {
+  tasks.length = 0;
   const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
   fs.writeFileSync(absolutePath, tasksJSON);
 }
@@ -90,8 +100,12 @@ switch (thirdParameter) {
   case "add":
     add(fourthParameter, fifthParameter);
     break;
+  case "clear":
+    clear();
+    console.log("Lista de tareas eliminada!");
+    break;
   default:
     console.log(
-      "Ingresa algunos de los siguientes comandos:\n- all: Ver TODAS las tareas.\n- pending: Ver tareas PENDIENTES.\n- done: Ver tareas REALIZADAS."
+      "Ingresa algunos de los siguientes comandos:\n- all: Ver TODAS las tareas.\n- add (nombre de la tarea) (fecha): Agregar una nueva tarea.\n- pending: Ver tareas PENDIENTES.\n- done: Ver tareas REALIZADAS.\n- toggle (indice de la tarea): cambiar el estado de una tarea"
     );
 }
