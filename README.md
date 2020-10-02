@@ -1,6 +1,6 @@
 # node-todo-app
 
-TO-DO App that allows to view, add, toggle and clear tasks through the terminal by manipulating a JSON file. Built using NodeJS.
+TO-DO application that allows to view, add, toggle and delete tasks through the terminal by manipulating a JSON file. Built using NodeJS.
 
 ## How to use
 
