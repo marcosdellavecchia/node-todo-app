@@ -15,5 +15,5 @@ Open a terminal located in the src directory and run `node index.js`. The progra
 - ```toggle [task index]```: Switch the current state of a registered task.
 - ```clear```: Removes all tasks from the tasks.json file.
 
-##Credits:
+## Credits:
 This software was created as a Node JS project during the Full Stack Node course at Digital House programming school.
