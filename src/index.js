@@ -10,16 +10,16 @@
 // - Fecha
 // - Estado (hecha o no)
 
-// Operaciones
-// - Ver todas las tareas
-// - Ver solo tareas completadas
-// - Ver solo tareas pendientes
-
 const fs = require("fs");
 const path = require("path");
 
+// Parametros ingresados por consola
+const thirdParameter = process.argv[2];
+const fourthParameter = process.argv[3];
+const fifthParameter = process.argv[4];
+
 // Setea el path absoluto para que sea correcto independientemente de donde se ejecute
-const absolutePath = path.join(__dirname, "tasks.json");
+const absolutePath = path.join(__dirname, "../db/tasks.json");
 
 // Lee el json utilizando el modulo FS
 const tasksJSON = fs.readFileSync(absolutePath, { encoding: "utf-8" });
@@ -32,7 +32,7 @@ function showAll() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     console.log(
-      ` - [${task.done ? "✅" : "⛔"}] ${task.name} (${task.deadline})`
+      ` - ${task.done ? "✅" : "⛔"} ${task.name} (${task.deadline})  ${i}`
     );
   }
 }
@@ -40,8 +40,8 @@ function showAll() {
 function showDone() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
-    if (task.done === true) {
-      console.log(`[✅] ${task.name} (${task.deadline})`);
+    if (task.done) {
+      console.log(`✅ ${task.name} (${task.deadline})`);
     }
   }
 }
@@ -49,14 +49,32 @@ function showDone() {
 function showPending() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
-    if (task.done === false) {
-      console.log(`[⛔] ${task.name} (${task.deadline})`);
+    if (!task.done) {
+      console.log(`⛔ ${task.name} (${task.deadline})`);
     }
   }
 }
 
+function toggle(taskIndex) {
+  tasks[taskIndex].done = !tasks[taskIndex].done;
+  showAll();
+  const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
+  fs.writeFileSync(absolutePath, tasksJSON);
+}
+
+function add(name, deadline) {
+  const newTask = {
+    name: name,
+    deadline: deadline,
+    done: false,
+  };
+  tasks.push(newTask);
+  const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
+  fs.writeFileSync(absolutePath, tasksJSON);
+}
+
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
-switch (process.argv[2]) {
+switch (thirdParameter) {
   case "all":
     showAll();
     break;
@@ -65,6 +83,12 @@ switch (process.argv[2]) {
     break;
   case "pending":
     showPending();
+    break;
+  case "toggle":
+    toggle(fourthParameter);
+    break;
+  case "add":
+    add(fourthParameter, fifthParameter);
     break;
   default:
     console.log(

@@ -18,5 +18,10 @@
     "name": "SCRUM",
     "deadline": "08/10/2020",
     "done": false
+  },
+  {
+    "name": "Prueba",
+    "deadline": "01/10/2020",
+    "done": true
   }
 ]
