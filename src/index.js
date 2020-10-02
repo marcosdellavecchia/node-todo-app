@@ -74,9 +74,18 @@ add = (name, deadline) => {
   save();
 };
 
-// Limpiar lista (elimina todas las tareas)
+// Limpiar lista (elimina todas las tareas guardadas)
 clear = () => {
   tasks.length = 0;
+  save();
+};
+
+// Eliminar una tarea especifica
+remove = (taskIndex) => {
+  if (taskIndex > -1) {
+    tasks.splice(taskIndex, 1);
+  }
+  showAll();
   save();
 };
 
@@ -101,8 +110,11 @@ switch (thirdParameter) {
     clear();
     console.log("Lista de tareas eliminada!");
     break;
+  case "remove":
+    remove(fourthParameter);
+    break;
   default:
     console.log(
-      "Ingresa algunos de los siguientes comandos:\n- all: Ver TODAS las tareas.\n- add [nombre de la tarea] [fecha]: Agregar una nueva tarea.\n- pending: Ver tareas PENDIENTES.\n- done: Ver tareas REALIZADAS.\n- toggle [indice de la tarea]: cambiar el estado de una tarea.\n- clear: Eliminar todas las tareas registradas."
+      "*** TO-DO APP ***\nIngresa algunos de los siguientes comandos:\n- all: Ver todas las tareas.\n- add [nombre de la tarea] [fecha]: Agregar una nueva tarea.\n- pending: Ver tareas pendientes.\n- done: Ver tareas completadas.\n- toggle [indice de la tarea]: modificar el estado actual de una tarea.\n- remove [indice de la tarea]: eliminar una tarea específica de la lista.\n- clear: Eliminar todas las tareas registradas."
     );
 }
