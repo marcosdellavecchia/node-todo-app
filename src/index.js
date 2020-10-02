@@ -1,19 +1,8 @@
-// Las tareas por hacer y las tareas ya hechas
-// - Un array de las cosas hechas
-// - Un array de las cosas por hacer
-// Fechas
-// [TODO] Poder ingresar las tareas
-// Poder consultar las tareas por hacer y las tareas hechas
-
-// La tarea tiene que tener:
-// - Nombre
-// - Fecha
-// - Estado (hecha o no)
-
+// Requiere los modulos FileSystem y Path
 const fs = require("fs");
 const path = require("path");
 
-// Parametros ingresados por consola
+// Reconoce los parametros ingresados por consola que se van a utilizar para los comandos
 const thirdParameter = process.argv[2];
 const fourthParameter = process.argv[3];
 const fifthParameter = process.argv[4];
@@ -27,7 +16,7 @@ const tasksJSON = fs.readFileSync(absolutePath, { encoding: "utf-8" });
 // Convierte el string en formato de objeto JavaScript
 const tasks = JSON.parse(tasksJSON);
 
-// Funcion que permite ver todas las tareas
+// Ver todas las tareas guardadas
 function showAll() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
@@ -40,6 +29,7 @@ function showAll() {
   }
 }
 
+// Ver solo tareas realizadas
 function showDone() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
@@ -49,6 +39,7 @@ function showDone() {
   }
 }
 
+// Ver solo tareas pendientes
 function showPending() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
@@ -58,6 +49,7 @@ function showPending() {
   }
 }
 
+// Toggle del estado de tareas
 function toggle(taskIndex) {
   tasks[taskIndex].done = !tasks[taskIndex].done;
   showAll();
@@ -65,6 +57,7 @@ function toggle(taskIndex) {
   fs.writeFileSync(absolutePath, tasksJSON);
 }
 
+// Agregar nueva tarea
 function add(name, deadline) {
   const newTask = {
     name: name,
@@ -77,6 +70,7 @@ function add(name, deadline) {
   fs.writeFileSync(absolutePath, tasksJSON);
 }
 
+// Borrar todas la tareas
 function clear() {
   tasks.length = 0;
   const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
@@ -106,6 +100,6 @@ switch (thirdParameter) {
     break;
   default:
     console.log(
-      "Ingresa algunos de los siguientes comandos:\n- all: Ver TODAS las tareas.\n- add (nombre de la tarea) (fecha): Agregar una nueva tarea.\n- pending: Ver tareas PENDIENTES.\n- done: Ver tareas REALIZADAS.\n- toggle (indice de la tarea): cambiar el estado de una tarea"
+      "Ingresa algunos de los siguientes comandos:\n- all: Ver TODAS las tareas.\n- add [nombre de la tarea] [fecha]: Agregar una nueva tarea.\n- pending: Ver tareas PENDIENTES.\n- done: Ver tareas REALIZADAS.\n- toggle [indice de la tarea]: cambiar el estado de una tarea.\n- clear: Eliminar todas las tareas registradas."
     );
 }
