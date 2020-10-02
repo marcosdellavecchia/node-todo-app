@@ -9,8 +9,8 @@ Open a terminal in the src directory and execute `node index.js`. This will show
 ## Command list
 
 - ```all```: Display all registered tasks (both pending and done).
-- pending: Display pending tasks.
-- done: Display completed tasks.
-- add [task description] [deadline]: Add a new task.
-- toggle [task index]: Switch the current state of a registered task.
-- clear: Removes all tasks from the tasks.json file.
+- ```pending```: Display pending tasks.
+- ```done```: Display completed tasks.
+- ```add [task description] [deadline]```: Add a new task.
+- ```toggle [task index]```: Switch the current state of a registered task.
+- ```clear```: Removes all tasks from the tasks.json file.
