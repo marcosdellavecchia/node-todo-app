@@ -17,13 +17,13 @@ const tasksJSON = fs.readFileSync(absolutePath, { encoding: "utf-8" });
 const tasks = JSON.parse(tasksJSON);
 
 // Guardar datos en el archivo tasks.json
-function save() {
+save = () => {
   const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
   fs.writeFileSync(absolutePath, tasksJSON);
-}
+};
 
 // Ver todas las tareas guardadas
-function showAll() {
+showAll = () => {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     console.log(
@@ -33,37 +33,37 @@ function showAll() {
   if (tasks.length === 0) {
     console.log("No existen tareas registradas.");
   }
-}
+};
 
 // Ver solo tareas realizadas
-function showDone() {
+showDone = () => {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (task.done) {
       console.log(`☑  ${task.name} (${task.deadline})`);
     }
   }
-}
+};
 
 // Ver solo tareas pendientes
-function showPending() {
+showPending = () => {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (!task.done) {
       console.log(`☐  ${task.name} (${task.deadline})`);
     }
   }
-}
+};
 
-// Toggle del estado de tareas
-function toggle(taskIndex) {
+// Toggle del estado de tareas (cambiar de hecho a pendiente y viceversa)
+toggle = (taskIndex) => {
   tasks[taskIndex].done = !tasks[taskIndex].done;
   showAll();
   save();
-}
+};
 
 // Agregar nueva tarea
-function add(name, deadline) {
+add = (name, deadline) => {
   const newTask = {
     name: name,
     deadline: deadline,
@@ -72,13 +72,13 @@ function add(name, deadline) {
   tasks.push(newTask);
   showAll();
   save();
-}
+};
 
-// Borrar todas la tareas
-function clear() {
+// Limpiar lista (elimina todas las tareas)
+clear = () => {
   tasks.length = 0;
   save();
-}
+};
 
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
 switch (thirdParameter) {
