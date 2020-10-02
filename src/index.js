@@ -82,9 +82,8 @@ clear = () => {
 
 // Eliminar una tarea especifica
 remove = (taskIndex) => {
-  if (taskIndex > -1) {
-    tasks.splice(taskIndex, 1);
-  }
+  tasks.splice(taskIndex, 1);
+
   showAll();
   save();
 };
