@@ -1,17 +1,17 @@
 [
   {
-    "name": "Tarea 1",
-    "deadline": "01/10/2020",
+    "name": "Agregar features a TO-DO APP",
+    "deadline": "02/10/2020",
     "done": true
   },
   {
-    "name": "Tarea 2",
+    "name": "Estudiar Git",
     "deadline": "07/10/2020",
     "done": false
   },
   {
-    "name": "Tarea 3",
-    "deadline": "14/11/2020",
+    "name": "Hacer las compras",
+    "deadline": "30/11/2020",
     "done": false
   }
 ]
