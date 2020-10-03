@@ -6,6 +6,7 @@ const path = require("path");
 const thirdParameter = process.argv[2];
 const fourthParameter = process.argv[3];
 const fifthParameter = process.argv[4];
+const sixthParameter = process.argv[5];
 
 // Setea el path absoluto para que sea correcto independientemente de donde se ejecute
 const absolutePath = path.join(__dirname, "../db/tasks.json");
@@ -88,6 +89,13 @@ remove = (taskIndex) => {
   save();
 };
 
+edit = (taskIndex, name, deadline) => {
+  tasks[taskIndex].name = name;
+  tasks[taskIndex].deadline = deadline;
+  showAll();
+  save();
+};
+
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
 switch (thirdParameter) {
   case "all":
@@ -111,6 +119,9 @@ switch (thirdParameter) {
     break;
   case "remove":
     remove(fourthParameter);
+    break;
+  case "edit":
+    edit(fourthParameter, fifthParameter, sixthParameter);
     break;
   default:
     console.log(
