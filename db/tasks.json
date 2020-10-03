@@ -7,11 +7,21 @@
   {
     "name": "Estudiar Git",
     "deadline": "07/10/2020",
+    "done": true
+  },
+  {
+    "name": "Reunión de planificación proyecto",
+    "deadline": "30/11/2020",
     "done": false
   },
   {
-    "name": "Hacer las compras",
-    "deadline": "30/11/2020",
+    "name": "Entrega proyecto final",
+    "deadline": "02/12/2020",
+    "done": false
+  },
+  {
+    "name": "Fiesta (Zoom) de fin de año",
+    "deadline": "16/12/2020",
     "done": false
   }
 ]
