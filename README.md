@@ -13,7 +13,8 @@ Open a terminal located at the src directory and run `node index.js`. The progra
 - `done`: Display completed tasks.
 - `add [task description] [deadline]`: Add a new task.
 - `remove [task index]`: Removes a specific task of the list.
-- `toggle [task index]`: Switch the current state of a registered task.
+- `toggle [task index]`: Switch the current state of a registered task (pending/done).
+- `edit [task index] [task description] [deadline]`: Edit registered task.
 - `clear`: Clears all tasks from the tasks.json file.
 
 ## Credits:
