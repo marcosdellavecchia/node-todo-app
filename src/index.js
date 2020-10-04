@@ -77,6 +77,7 @@ add = (name, deadline) => {
 
 // Limpiar lista (elimina todas las tareas guardadas)
 clear = () => {
+  pressKey();
   tasks.length = 0;
   save();
 };
@@ -84,7 +85,6 @@ clear = () => {
 // Eliminar una tarea especifica
 remove = (taskIndex) => {
   tasks.splice(taskIndex, 1);
-
   showAll();
   save();
 };
@@ -94,6 +94,15 @@ edit = (taskIndex, name, deadline) => {
   tasks[taskIndex].deadline = deadline;
   showAll();
   save();
+};
+
+// Requiere que se presione una tecla para confirmar la acción
+pressKey = () => {
+  console.log(
+    "ADVERTENCIA: Esta acción eliminará todas las tareas guardadas. Presione cualquier tecla para continuar:"
+  );
+  process.stdin.setRawMode(true);
+  fs.readSync(0, Buffer.alloc(1), 0, 1);
 };
 
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
@@ -115,7 +124,6 @@ switch (thirdParameter) {
     break;
   case "clear":
     clear();
-    console.log("Lista de tareas eliminada!");
     break;
   case "remove":
     remove(fourthParameter);
