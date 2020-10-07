@@ -23,6 +23,13 @@ save = () => {
   fs.writeFileSync(absolutePath, tasksJSON);
 };
 
+// Requiero moment luego de instalarlo
+let moment = require("moment");
+
+// Le creo dos variables con la fecha y la hora
+let fechaHora = `${moment().format("HH:mm")} hs`;
+let fechaDia = moment().format("DD/MM/YY");
+
 // Ver todas las tareas guardadas
 showAll = () => {
   for (let i = 0; i < tasks.length; i++) {
@@ -56,21 +63,26 @@ showPending = () => {
   }
 };
 
-// Toggle del estado de tareas (cambiar de hecho a pendiente y viceversa)
+// Toggle del estado de tareas (cambiar de hecho a pendiente y viceversa) + Al modificarlas se le agrega la fecha y la hora de modificación
 toggle = (taskIndex) => {
   tasks[taskIndex].done = !tasks[taskIndex].done;
+  tasks[taskIndex]["modificationTime"] = fechaHora;
+  tasks[taskIndex]["modificationDay"] = fechaDia;
   showAll();
   save();
 };
 
 // Agregar nueva tarea
-add = (name, deadline) => {
-  const newTask = {
-    name: name,
-    deadline: deadline,
-    done: false,
-  };
+function Tasks(name, deadline, done) {
+  this.name = name;
+  this.deadline = deadline;
+  this.done = done;
+}
+
+const add = (name, deadline) => {
+  const newTask = new Tasks(name, deadline, false);
   tasks.push(newTask);
+
   showAll();
   save();
 };
@@ -105,6 +117,17 @@ pressKey = () => {
   fs.readSync(0, Buffer.alloc(1), 0, 1);
 };
 
+// Muestra las tareas que recibieron TOGGLE, en que día y en que horario
+modification = () => {
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].modificationTime && tasks[i].modificationDay) {
+      console.log(
+        `- La tarea: ${tasks[i].name} - Se modificó el día: ${tasks[i].modificationDay} a la hora ${tasks[i].modificationTime}`
+      );
+    }
+  }
+};
+
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
 switch (thirdParameter) {
   case "all":
@@ -130,6 +153,9 @@ switch (thirdParameter) {
     break;
   case "edit":
     edit(fourthParameter, fifthParameter, sixthParameter);
+    break;
+  case "modification":
+    modification();
     break;
   default:
     console.log(
