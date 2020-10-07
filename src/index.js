@@ -71,6 +71,10 @@ toggle = (taskIndex) => {
   showAll();
   save();
 };
+// Funcion constructora para agregar tareas
+function Tasks(name, deadline, done) {
+  (this.name = name), (this.deadline = deadline), (this.done = false);
+}
 
 // Agregar nueva tarea
 function Tasks(name, deadline, done) {

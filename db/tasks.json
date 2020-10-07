@@ -7,7 +7,9 @@
   {
     "name": "Estudiar Git",
     "deadline": "07/10/2020",
-    "done": true
+    "done": false,
+    "modificationTime": "12:18 hs",
+    "modificationDay": "07/10/20"
   },
   {
     "name": "Reunión de planificación proyecto",
