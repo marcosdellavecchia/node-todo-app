@@ -7,6 +7,7 @@ const thirdParameter = process.argv[2];
 const fourthParameter = process.argv[3];
 const fifthParameter = process.argv[4];
 const sixthParameter = process.argv[5];
+const [ , , ,...spreadParameter] = process.argv // Junta en un solo array todos los elementos posteriores al "node - index.ja -  toggle"
 
 // Setea el path absoluto para que sea correcto independientemente de donde se ejecute
 const absolutePath = path.join(__dirname, "../db/tasks.json");
@@ -53,6 +54,7 @@ showDone = () => {
   }
 };
 
+//
 // Ver solo tareas pendientes
 showPending = () => {
   for (let i = 0; i < tasks.length; i++) {
@@ -64,13 +66,18 @@ showPending = () => {
 };
 
 // Toggle del estado de tareas (cambiar de hecho a pendiente y viceversa) + Al modificarlas se le agrega la fecha y la hora de modificación
-toggle = (taskIndex) => {
-  tasks[taskIndex].done = !tasks[taskIndex].done;
-  tasks[taskIndex]["modificationTime"] = fechaHora;
-  tasks[taskIndex]["modificationDay"] = fechaDia;
+
+toggle = (...tasksIndex) => {
+  tasksIndex.forEach(function (indexValue, indexNumber){
+    tasks[indexValue].done = !tasks[indexValue].done;
+    tasks[indexValue]["modificationTime"] = fechaHora;
+    tasks[indexValue]["modificationDay"] = fechaDia;
+   });
   showAll();
   save();
 };
+
+
 // Funcion constructora para agregar tareas
 function Tasks(name, deadline, done) {
   (this.name = name), (this.deadline = deadline), (this.done = false);
@@ -144,7 +151,7 @@ switch (thirdParameter) {
     showPending();
     break;
   case "toggle":
-    toggle(fourthParameter);
+    toggle(...spreadParameter);
     break;
   case "add":
     add(fourthParameter, fifthParameter);
@@ -166,3 +173,4 @@ switch (thirdParameter) {
       "*** TO-DO APP ***\nIngresa algunos de los siguientes comandos:\n- all: Ver todas las tareas.\n- add [nombre de la tarea] [fecha]: Agregar una nueva tarea.\n- pending: Ver tareas pendientes.\n- done: Ver tareas completadas.\n- toggle [indice de la tarea]: modificar el estado actual de una tarea.\n- remove [indice de la tarea]: eliminar una tarea específica de la lista.\n- clear: Eliminar todas las tareas registradas."
     );
 }
+

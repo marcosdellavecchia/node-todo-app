@@ -7,19 +7,23 @@
   {
     "name": "Estudiar Git",
     "deadline": "07/10/2020",
-    "done": false,
-    "modificationTime": "20:25 hs",
+    "done": true,
+    "modificationTime": "23:39 hs",
     "modificationDay": "07/10/20"
   },
   {
     "name": "Reunión de planificación proyecto",
     "deadline": "30/11/2020",
-    "done": false
+    "done": false,
+    "modificationTime": "23:39 hs",
+    "modificationDay": "07/10/20"
   },
   {
     "name": "Entrega proyecto final",
     "deadline": "02/12/2020",
-    "done": false
+    "done": false,
+    "modificationTime": "23:39 hs",
+    "modificationDay": "07/10/20"
   },
   {
     "name": "Fiesta (Zoom) de fin de año",
