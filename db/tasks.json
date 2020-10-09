@@ -2,32 +2,36 @@
   {
     "name": "Agregar features a TO-DO APP",
     "deadline": "02/10/2020",
-    "done": true
+    "done": false,
+    "modificationTime": "11:02 hs",
+    "modificationDay": "09/10/20"
   },
   {
     "name": "Estudiar Git",
     "deadline": "07/10/2020",
-    "done": true,
-    "modificationTime": "23:39 hs",
-    "modificationDay": "07/10/20"
+    "done": false,
+    "modificationTime": "10:55 hs",
+    "modificationDay": "09/10/20"
   },
   {
     "name": "Reunión de planificación proyecto",
     "deadline": "30/11/2020",
     "done": false,
-    "modificationTime": "23:39 hs",
-    "modificationDay": "07/10/20"
+    "modificationTime": "10:55 hs",
+    "modificationDay": "09/10/20"
   },
   {
     "name": "Entrega proyecto final",
     "deadline": "02/12/2020",
     "done": false,
-    "modificationTime": "23:39 hs",
-    "modificationDay": "07/10/20"
+    "modificationTime": "10:55 hs",
+    "modificationDay": "09/10/20"
   },
   {
     "name": "Fiesta (Zoom) de fin de año",
     "deadline": "16/12/2020",
-    "done": false
+    "done": false,
+    "modificationTime": "10:55 hs",
+    "modificationDay": "09/10/20"
   }
 ]
