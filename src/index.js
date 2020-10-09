@@ -44,26 +44,51 @@ showAll = () => {
   }
 };
 
+// Se le suman las tareas realizadas cuando se ejecúta showDone()
+let doneTasks = 0;
+
+// Si las tareas realizadas son 0, muestra que no hay realizadas. Se ejecuta en showDone() 
+noDoneTasks = () => {
+  if (doneTasks == 0) {
+    console.log("No hay tareas realizadas");
+  };
+}
+
 // Ver solo tareas realizadas
 showDone = () => {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (task.done) {
+      doneTasks++;
       console.log(`☑  ${task.name} (${task.deadline})`);
-    }
-  }
+    }; 
+  }; 
+  noDoneTasks();
 };
 
-//
-// Ver solo tareas pendientes
+// Se le suman las tareas pendientes cuando se ejecúta showPending()
+let pendingTasks = 0;
+
+// Si las tareas pendientes son 0, muestra que no hay pendientes. Se ejecuta en showPending() 
+noPendingTasks = () => {
+  if (pendingTasks == 0) {
+    console.log("No hay tareas pendientes");
+  };
+}
+
+// Ver solo tareas pendientes 
 showPending = () => {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (!task.done) {
+      pendingTasks++;
       console.log(`☐  ${task.name} (${task.deadline})`);
-    }
-  }
-};
+    }; 
+  };  
+  noPendingTasks();
+}
+
+
 
 // Toggle del estado de tareas (cambiar de hecho a pendiente y viceversa) + Al modificarlas se le agrega la fecha y la hora de modificación
 
