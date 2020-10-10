@@ -1,6 +1,7 @@
-// Requiere los modulos FileSystem y Path
+// Requiere los modulos FileSystem, Path y Chalk (para console styling)
 const fs = require("fs");
 const path = require("path");
+const chalk = require("chalk");
 
 // Reconoce los parametros ingresados por consola que se van a utilizar para los comandos
 const thirdParameter = process.argv[2];
@@ -20,6 +21,11 @@ const helpJSON = fs.readFileSync(helpAbsolutePath, { encoding: "utf-8" });
 // Convierte el string en formato de objeto JavaScript
 const tasks = JSON.parse(tasksJSON);
 const help = JSON.parse(helpJSON);
+
+// Colores de Chalk para styling de consola
+const red = chalk.red;
+const green = chalk.green;
+const yellow = chalk.yellow;
 
 // Mostrar menú de ayuda
 helpMenu = () => {
@@ -44,9 +50,11 @@ let fechaDia = moment().format("DD/MM/YY");
 showAll = () => {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
-    console.log(
-      `[${i}] ${task.done ? "☑ " : "☐ "} ${task.name} (${task.deadline})`
-    );
+    if (task.done) {
+      console.log(green(`[${i}] ☑  ${task.name} (${task.deadline})`));
+    } else {
+      console.log(red(`[${i}] ☐  ${task.name} (${task.deadline})`));
+    }
   }
   if (tasks.length === 0) {
     console.log("No existen tareas registradas.");
@@ -69,7 +77,7 @@ showDone = () => {
     const task = tasks[i];
     if (task.done) {
       doneTasks++;
-      console.log(`☑  ${task.name} (${task.deadline})`);
+      console.log(green`☑  ${task.name} (${task.deadline})`);
     }
   }
   noDoneTasks();
@@ -91,7 +99,7 @@ showPending = () => {
     const task = tasks[i];
     if (!task.done) {
       pendingTasks++;
-      console.log(`☐  ${task.name} (${task.deadline})`);
+      console.log(red`☐  ${task.name} (${task.deadline})`);
     }
   }
   noPendingTasks();
@@ -158,7 +166,9 @@ modification = () => {
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].modificationTime && tasks[i].modificationDay) {
       console.log(
-        `- La tarea: ${tasks[i].name} - Se modificó el día: ${tasks[i].modificationDay} a la hora ${tasks[i].modificationTime}`
+        `- ${tasks[i].name} - Se modificó el día: ${yellow(
+          tasks[i].modificationDay
+        )} a la hora ${yellow(tasks[i].modificationTime)}.`
       );
     }
   }
