@@ -178,7 +178,7 @@ modification = () => {
 
 credits = () => {
   console.log(
-    "Este programa fue desarrollado como un proyecto introductorio a Node en Digital House\nContribuyeron al código:\n- Marcos Della Vecchia\n- Federico Silva\n- Gabriel Rubin\n- Damián Monti"
+    "Este programa fue desarrollado como un proyecto introductorio a Node en Digital House\nContribuyeron al código:\n- Marcos Della Vecchia\n- Federico Silva\n- Gabriel Rubin\n- Damián Monti\n- Diego Valdés"
   );
 };
 
