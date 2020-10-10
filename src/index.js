@@ -10,18 +10,27 @@ const sixthParameter = process.argv[5];
 const [, , , ...spreadParameter] = process.argv; // Junta en un solo array todos los elementos posteriores al "node - index.ja -  toggle"
 
 // Setea el path absoluto para que sea correcto independientemente de donde se ejecute
-const absolutePath = path.join(__dirname, "../db/tasks.json");
+const taskAbsolutePath = path.join(__dirname, "../db/tasks.json");
+const helpAbsolutePath = path.join(__dirname, "./help.json");
 
 // Lee el json utilizando el modulo FS
-const tasksJSON = fs.readFileSync(absolutePath, { encoding: "utf-8" });
+const tasksJSON = fs.readFileSync(taskAbsolutePath, { encoding: "utf-8" });
+const helpJSON = fs.readFileSync(helpAbsolutePath, { encoding: "utf-8" });
 
 // Convierte el string en formato de objeto JavaScript
 const tasks = JSON.parse(tasksJSON);
+const help = JSON.parse(helpJSON);
+
+// Mostrar menú de ayuda
+helpMenu = () => {
+  const helpMenu = help.join("\n");
+  console.log(helpMenu);
+};
 
 // Guardar datos en el archivo tasks.json
 save = () => {
   const tasksJSON = JSON.stringify(tasks, null, 2); //Pretty print
-  fs.writeFileSync(absolutePath, tasksJSON);
+  fs.writeFileSync(taskAbsolutePath, tasksJSON);
 };
 
 // Requiero moment luego de instalarlo
@@ -47,12 +56,12 @@ showAll = () => {
 // Se le suman las tareas realizadas cuando se ejecúta showDone()
 let doneTasks = 0;
 
-// Si las tareas realizadas son 0, muestra que no hay realizadas. Se ejecuta en showDone() 
+// Si las tareas realizadas son 0, muestra que no hay realizadas. Se ejecuta en showDone()
 noDoneTasks = () => {
   if (doneTasks == 0) {
     console.log("No hay tareas realizadas");
-  };
-}
+  }
+};
 
 // Ver solo tareas realizadas
 showDone = () => {
@@ -61,34 +70,32 @@ showDone = () => {
     if (task.done) {
       doneTasks++;
       console.log(`☑  ${task.name} (${task.deadline})`);
-    }; 
-  }; 
+    }
+  }
   noDoneTasks();
 };
 
 // Se le suman las tareas pendientes cuando se ejecúta showPending()
 let pendingTasks = 0;
 
-// Si las tareas pendientes son 0, muestra que no hay pendientes. Se ejecuta en showPending() 
+// Si las tareas pendientes son 0, muestra que no hay pendientes. Se ejecuta en showPending()
 noPendingTasks = () => {
   if (pendingTasks == 0) {
     console.log("No hay tareas pendientes");
-  };
-}
+  }
+};
 
-// Ver solo tareas pendientes 
+// Ver solo tareas pendientes
 showPending = () => {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (!task.done) {
       pendingTasks++;
       console.log(`☐  ${task.name} (${task.deadline})`);
-    }; 
-  };  
+    }
+  }
   noPendingTasks();
-}
-
-
+};
 
 // Toggle del estado de tareas (cambiar de hecho a pendiente y viceversa) + Al modificarlas se le agrega la fecha y la hora de modificación
 
@@ -157,6 +164,14 @@ modification = () => {
   }
 };
 
+// Créditos (si contribuiste al desarrollo, por favor incluí tu nombre en el console log)
+
+credits = () => {
+  console.log(
+    "Este programa fue desarrollado como un proyecto introductorio a Node en Digital House\nContribuyeron al código:\n- Marcos Della Vecchia\n- Federico Silva\n- Gabriel Rubin\n- Damián Monti"
+  );
+};
+
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
 switch (thirdParameter) {
   case "all":
@@ -186,8 +201,9 @@ switch (thirdParameter) {
   case "modification":
     modification();
     break;
+  case "credits":
+    credits();
+    break;
   default:
-    console.log(
-      "*** TO-DO APP ***\nIngresa algunos de los siguientes comandos:\n- all: Ver todas las tareas.\n- add [nombre de la tarea] [fecha]: Agregar una nueva tarea.\n- pending: Ver tareas pendientes.\n- done: Ver tareas completadas.\n- toggle [indice de la tarea]: modificar el estado actual de una tarea.\n- remove [indice de la tarea]: eliminar una tarea específica de la lista.\n- clear: Eliminar todas las tareas registradas."
-    );
+    helpMenu();
 }

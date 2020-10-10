@@ -1,0 +1,13 @@
+[
+  "                                  ****** Node TO-DO APP ******                                          ",
+  "         Ingrese algunos de los siguientes comandos para comenzar:                                      ",
+  "       - all: Mostrar todas las tareas.                                                                 ",
+  "       - pending: Mostrar tareas pendientes.                                                            ",
+  "       - done: Mostrar tareas completadas.                                                              ",
+  "       - add [nombre de la tarea] [fecha]: Agregar una nueva tarea.                                     ",
+  "       - toggle [indice de la tarea]: modificar el estado actual de una o varias tareas simultaneamente.",
+  "       - remove [indice de la tarea]: eliminar una tarea específica de la lista.                        ",
+  "       - modification: Muestra día y horario de las tareas realizadas (marcadas con el comando toggle)  ",
+  "       - clear: Eliminar todas las tareas registradas.                                                  ",
+  "       - credits: Mostrar desarrolladores que contribuyeron al proyecto."
+]
