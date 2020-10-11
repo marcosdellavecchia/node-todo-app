@@ -1,6 +1,6 @@
 # node-todo-app
 
-![Node Tasks App Logo](https://i.imgur.com/O6bHZkb.png)
+![Node Tasks App Logo](https://i.imgur.com/vDqH6qr.png)
 
 TO-DO application that allows to view, add, toggle and delete tasks through the terminal by manipulating a JSON file. Built using NodeJS.
 
