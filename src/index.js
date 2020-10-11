@@ -155,7 +155,9 @@ edit = (taskIndex, name, deadline) => {
 // Requiere que se presione una tecla para confirmar la acción
 pressKey = () => {
   console.log(
-    "ADVERTENCIA: Esta acción eliminará todas las tareas guardadas. Presione cualquier tecla para continuar:"
+    yellow(
+      "ADVERTENCIA: Esta acción eliminará todas las tareas guardadas. Presione cualquier tecla para continuar:"
+    )
   );
   process.stdin.setRawMode(true);
   fs.readSync(0, Buffer.alloc(1), 0, 1);
