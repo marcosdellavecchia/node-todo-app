@@ -193,12 +193,38 @@ showProgress = () => {
   console.log(Bar);
 };
 
+// time left
+
+tasks.map(function (objects) {
+  const date = moment(objects.deadline, "DD/MM/YY");
+  objects.deadline = date;
+}); // para trabajar los deadlines como objetos moment()
+
+// se pasan los indices de la tarea deseada y devuelve cuantos dias faltan para que expire la tarea
+timeLeft = (...indexes) => {
+  indexes.forEach(function (taskIndex) {
+    let date = tasks[taskIndex].deadline;
+    let timeToExpire = moment(date).diff(moment(),"days");
+    let taskName = tasks[taskIndex].name;
+
+    if (timeToExpire > 7) {
+      console.log(`Remaining ${chalk.green(`"${timeToExpire} days" `)} till expires the following task: ${chalk.green.underline(taskName.toUpperCase())} `);
+    } else if (timeToExpire <= 7 && timeToExpire >= 0){
+        console.log(`Remaining ${chalk.red(`"${timeToExpire} days" `)} till expires the following task: ${chalk.red.underline(taskName.toUpperCase())} `)
+        } else {
+          console.log(`This task expired ${chalk.red(`"${-timeToExpire} days ago: " `)} ${chalk.red.underline(taskName.toUpperCase())} `)
+        }
+  })
+};
+
+
 // Créditos (si contribuiste al desarrollo, por favor incluí tu nombre en el console log)
 credits = () => {
   console.log(
     "Este programa fue desarrollado como un proyecto introductorio a Node en Digital House\nContribuyeron al código:\n- Marcos Della Vecchia\n- Federico Silva\n- Gabriel Rubin\n- Damián Monti\n- Diego Valdés"
   );
 };
+
 
 // Switch que ejecuta una funcion segun el parametro que recibe por consola (toma la tercera palabra)
 switch (thirdParameter) {
@@ -231,6 +257,9 @@ switch (thirdParameter) {
     break;
   case "progress":
     showProgress();
+    break;
+    case "time left":
+    timeLeft(...spreadParameter);
     break;
   case "credits":
     credits();
