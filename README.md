@@ -20,6 +20,7 @@ Open a terminal located at the src directory and run `node index.js`. The progra
 - `edit [task index] [task description] [deadline]`: Edit registered task.
 - `progress`: View progress bar according to the number of completed tasks.
 - `clear`: Clears all tasks from the tasks.json file.
+- `time left` : Returns number of days left till the task expires
 - `credits`: Get to know the people behind the code!.
 
 ## Credits:
