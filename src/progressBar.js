@@ -1,5 +1,6 @@
 const chalk = require("chalk");
-const bgWhite = chalk.bgWhite;
+const bgGreen = chalk.bgGreen;
+const bgRed = chalk.bgRed;
 
 module.exports = class ProgressBar {
   constructor() {
@@ -24,8 +25,8 @@ module.exports = class ProgressBar {
     const filled_bar_length = (current_progress * this.bar_length).toFixed(0);
     const empty_bar_length = this.bar_length - filled_bar_length;
 
-    const filled_bar = this.get_bar(filled_bar_length, " ", bgWhite);
-    const empty_bar = this.get_bar(empty_bar_length, "-");
+    const filled_bar = this.get_bar(filled_bar_length, " ", bgGreen);
+    const empty_bar = this.get_bar(empty_bar_length, " ", bgRed);
     const percentage_progress = (current_progress * 100).toFixed(2);
 
     process.stdout.clearLine();
