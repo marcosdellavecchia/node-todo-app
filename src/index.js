@@ -176,8 +176,24 @@ modification = () => {
   }
 };
 
-// Créditos (si contribuiste al desarrollo, por favor incluí tu nombre en el console log)
+// Barra porcentaje de progreso %
+showProgress = () => {
+  let current = 0;
+  const total = tasks.length;
+  for (let i = 0; i < total; i++) {
+    if (tasks[i].done) {
+      current++;
+    }
+  }
+  const ProgressBar = require("./ProgressBar");
+  const Bar = new ProgressBar();
 
+  Bar.init(total);
+  Bar.update(current);
+  console.log(Bar);
+};
+
+// Créditos (si contribuiste al desarrollo, por favor incluí tu nombre en el console log)
 credits = () => {
   console.log(
     "Este programa fue desarrollado como un proyecto introductorio a Node en Digital House\nContribuyeron al código:\n- Marcos Della Vecchia\n- Federico Silva\n- Gabriel Rubin\n- Damián Monti\n- Diego Valdés"
@@ -212,6 +228,9 @@ switch (thirdParameter) {
     break;
   case "modification":
     modification();
+    break;
+  case "progress":
+    showProgress();
     break;
   case "credits":
     credits();
